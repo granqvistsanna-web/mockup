@@ -16,8 +16,8 @@
   },
   {
     "name": "Marketplace — Studio Grey",
-    "why": "Neutral grey studio backdrop used by most device shots (Lateral, Asher Vale, Perspectiva, All Natural). Laptop stands in for the monitor-on-stand look until that layout exists.",
-    "settings": { "size": "4:3", "layout": "laptop", "chrome": "light", "bg": "gradient", "c1": "#EDEDEB", "c2": "#C9C9C6", "pad": 10, "radius": 12, "shadow": 40, "tilt": 0, "scroll": 0, "url": "yourtemplate.framer.website" }
+    "why": "Neutral grey studio backdrop used by most device shots (Lateral, Asher Vale, Perspectiva, All Natural). Uses the monitor-on-stand layout.",
+    "settings": { "size": "4:3", "layout": "monitor", "chrome": "light", "bg": "gradient", "c1": "#EDEDEB", "c2": "#C9C9C6", "pad": 10, "radius": 12, "shadow": 40, "tilt": 0, "scroll": 0, "url": "yourtemplate.framer.website" }
   },
   {
     "name": "Marketplace — Dark 3D Tilt",

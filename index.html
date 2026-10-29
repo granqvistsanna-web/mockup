@@ -165,16 +165,19 @@
     </div>
 
     <div class="group">
-      <div class="label">Templates</div>
+      <div class="label">House style</div>
+      <div class="chips" id="house"></div>
+      <div class="note">How the Lødd and Ostra thumbnails are made: a thin rim instead of a browser bar, on a dark glow or a blur.</div>
+      <div class="label" style="margin-top:var(--s-4)">Marketplace</div>
       <div class="chips" id="templates"></div>
-      <div class="note">Modelled on top-selling Framer Marketplace thumbnails (4:3, 1600 × 1200).</div>
+      <div class="note">Modelled on top-selling Framer Marketplace thumbnails. All 4:3; export at 2x for 3200 × 2400.</div>
     </div>
 
     <div class="group">
       <div class="label">Layout</div>
       <div class="seg" data-key="layout">
-        <button data-v="browser">Browser</button><button data-v="bare">Bare</button><button data-v="laptop">Laptop</button><button data-v="tablet">Tablet</button>
-        <button data-v="phone">Phone</button><button data-v="pair">Pair</button><button data-v="spread">Spread</button>
+        <button data-v="browser">Browser</button><button data-v="bare">Bare</button><button data-v="monitor">Monitor</button><button data-v="laptop">Laptop</button><button data-v="tablet">Tablet</button>
+        <button data-v="tall">Tall</button><button data-v="phone">Phone</button><button data-v="pair">Pair</button><button data-v="trio">Trio</button><button data-v="spread">Spread</button>
       </div>
     </div>
 
@@ -193,7 +196,9 @@
 
     <div class="group">
       <div class="label">Frame</div>
+      <div class="seg" data-key="frame"><button data-v="device">Device</button><button data-v="rim">Rim</button></div>
       <div class="seg" data-key="chrome"><button data-v="light">Light</button><button data-v="dark">Dark</button></div>
+      <div class="note" id="frame-note"></div>
       <input class="field" id="url" type="text" placeholder="Address bar text" spellcheck="false" aria-label="Address bar text">
       <div class="slide" data-key="scroll" data-max="100" data-unit="%" tabindex="0" role="slider" aria-label="Scroll"><span class="bl">Scroll</span><span class="bv"></span></div>
       <div class="slide" data-key="radius" data-max="40" data-unit="" tabindex="0" role="slider" aria-label="Window corners"><span class="bl">Window corners</span><span class="bv"></span></div>
@@ -203,13 +208,20 @@
       <div class="label">Scene</div>
       <div class="slide" data-key="pad" data-max="40" data-unit="%" tabindex="0" role="slider" aria-label="Padding"><span class="bl">Padding</span><span class="bv"></span></div>
       <div class="slide" data-key="shadow" data-max="100" data-unit="" tabindex="0" role="slider" aria-label="Shadow"><span class="bl">Shadow</span><span class="bv"></span></div>
+      <div class="slide" data-key="bleed" data-max="40" data-unit="%" tabindex="0" role="slider" aria-label="Run off the bottom"><span class="bl">Run off the bottom</span><span class="bv"></span></div>
       <div class="slide" data-key="tilt" data-min="-30" data-max="30" data-unit="°" tabindex="0" role="slider" aria-label="Tilt"><span class="bl">Tilt</span><span class="bv"></span></div>
+    </div>
+
+    <div class="group">
+      <div class="label">Labels</div>
+      <input class="field" id="title" type="text" placeholder="Title, top left" spellcheck="false" aria-label="Title, top left">
+      <input class="field" id="tag" type="text" placeholder="Tag, top right" spellcheck="false" aria-label="Tag, top right">
     </div>
 
     <div class="group">
       <div class="label">Background</div>
       <div class="seg" data-key="bg">
-        <button data-v="solid">Solid</button><button data-v="gradient">Gradient</button><button data-v="blur">Blur</button>
+        <button data-v="solid">Solid</button><button data-v="gradient">Gradient</button><button data-v="glow">Glow</button><button data-v="blur">Blur</button>
         <button data-v="image">Image</button><button data-v="none">None</button>
       </div>
       <div class="row" id="bg-colors">
@@ -242,7 +254,7 @@
     ['Gradient window', { size: '4:3', layout: 'browser', chrome: 'light', bg: 'gradient', c1: '#c9b8ff', c2: '#ffd3e6', pad: 9, radius: 16, shadow: 45, tilt: 0 }],
     ['Blurred hero', { size: '4:3', layout: 'browser', chrome: 'dark', bg: 'blur', c1: '#1a1a1f', c2: '#3a3a44', pad: 8, radius: 14, shadow: 70, tilt: 0 }],
     ['Bare hero', { size: '4:3', layout: 'bare', chrome: 'dark', bg: 'solid', c1: '#0e0e10', c2: '#0e0e10', pad: 3, radius: 10, shadow: 0, tilt: 0 }],
-    ['Studio grey', { size: '4:3', layout: 'laptop', chrome: 'light', bg: 'gradient', c1: '#ededeb', c2: '#c9c9c6', pad: 10, radius: 12, shadow: 40, tilt: 0 }],
+    ['Studio grey', { size: '4:3', layout: 'monitor', chrome: 'light', bg: 'gradient', c1: '#ededeb', c2: '#c9c9c6', pad: 10, radius: 12, shadow: 40, tilt: 0 }],
     ['Dark tilt', { size: '4:3', layout: 'browser', chrome: 'dark', bg: 'gradient', c1: '#0d0d10', c2: '#3a1414', pad: 10, radius: 14, shadow: 80, tilt: -18 }],
     ['Brand colour', { size: '4:3', layout: 'browser', chrome: 'light', bg: 'solid', c1: '#ff5a1f', c2: '#ff5a1f', pad: 8, radius: 12, shadow: 30, tilt: 0 }],
     ['Soft neutral', { size: '4:3', layout: 'browser', chrome: 'light', bg: 'gradient', c1: '#f4f4f2', c2: '#d6d6d2', pad: 10, radius: 12, shadow: 55, tilt: 0 }],
@@ -250,7 +262,16 @@
     ['Three pages', { size: '4:3', layout: 'spread', chrome: 'light', bg: 'solid', c1: '#efede8', c2: '#efede8', pad: 8, radius: 12, shadow: 35, tilt: 0 }],
     ['OG card', { size: 'og', layout: 'browser', chrome: 'light', bg: 'gradient', c1: '#c9b8ff', c2: '#ffd3e6', pad: 8, radius: 16, shadow: 45, tilt: 0 }]
   ];
-  var DEFAULTS = { layout: 'browser', size: '16:9', cw: 1920, ch: 1080, chrome: 'light', url: 'yoursite.framer.website',
+  // Sanna's own thumbnails (Lødd, Ostra): rimmed screens, no browser bar, windows running off the bottom
+  var HOUSE = [
+    ['Lødd tall', { size: '4:3', frame: 'rim', layout: 'tall', chrome: 'light', bg: 'glow', c1: '#141312', c2: '#2e2b28', pad: 9, bleed: 6, radius: 14, shadow: 0 }],
+    ['Lødd pair', { size: '4:3', frame: 'rim', layout: 'pair', chrome: 'light', bg: 'glow', c1: '#141312', c2: '#2e2b28', pad: 7, bleed: 6, radius: 14, shadow: 0 }],
+    ['Phone trio', { size: '4:3', frame: 'rim', layout: 'trio', chrome: 'light', bg: 'glow', c1: '#141312', c2: '#2e2b28', pad: 10, bleed: 0, radius: 14, shadow: 0 }],
+    ['Ostra pair', { size: '4:3', frame: 'rim', layout: 'pair', chrome: 'dark', bg: 'blur', c1: '#3a2c2a', c2: '#7a5a55', pad: 4, bleed: 0, radius: 14, shadow: 20, title: 'Template', tag: 'Framer template' }]
+  ];
+  // what a template doesn't set goes back to this, so templates don't inherit each other's labels or bleed
+  var BASE = { frame: 'device', bleed: 0, title: '', tag: '', tilt: 0, scroll: 0 };
+  var DEFAULTS = { layout: 'browser', frame: 'device', bleed: 0, title: '', tag: '', size: '16:9', cw: 1920, ch: 1080, chrome: 'light', url: 'yoursite.framer.website',
     scroll: 0, radius: 14, pad: 10, shadow: 50, tilt: 0, bg: 'gradient', c1: '#f1f1f0', c2: '#dcd9cf', scale: '2' };
 
   var S = Object.assign({}, DEFAULTS);
@@ -265,8 +286,8 @@
   // ---------- devices: each returns its size for a width, and draws itself ----------
   // A device is drawn at (0,0) with width w. `screen` is where the screenshot goes.
   var DEV = {
-    browser: function (w) {
-      var bar = Math.round(w * 0.034), sh = Math.round(w * 10 / 16);
+    browser: function (w, it) {
+      var bar = Math.round(w * 0.034), sh = Math.round(w * (it.a || 0.625));
       return { w: w, h: bar + sh, screen: [0, bar, w, sh], draw: function (c, img) {
         var r = S.radius * w / 1920 * 1.6, dark = S.chrome === 'dark';
         rr(c, 0, 0, w, bar + sh, r); c.save(); c.clip();
@@ -281,6 +302,14 @@
         }
         shot(c, img, 0, bar, w, sh, 0);
         c.restore();
+      } };
+    },
+    // house style: the screen in a thin rim, no bar or bezel. Light = an opaque pale rim, dark = a glass one
+    rim: function (w, it) {
+      var h = w * it.a, t = U * 5.5, r = S.radius * U * (it.phone ? 1.5 : 0.9);
+      return { w: w, h: h, draw: function (c, img) {
+        rr(c, 0, 0, w, h, r); c.fillStyle = S.chrome === 'dark' ? 'rgba(255,255,255,.34)' : '#ecebe8'; c.fill();
+        shot(c, img, t, t, w - 2 * t, h - 2 * t, r - t);
       } };
     },
     bare: function (w) {
@@ -320,12 +349,37 @@
         c.moveTo(0, lid); c.lineTo(w, lid); c.lineTo(w - base * 0.9, lid + base); c.lineTo(base * 0.9, lid + base); c.closePath(); c.fill();
         var nw = w * 0.13; rr(c, (w - nw) / 2, lid, nw, base * 0.32, base * 0.16); c.fillStyle = dark ? '#151517' : '#a9a8a3'; c.fill();
       } };
+    },
+    monitor: function (w) {  // Pro Display style: thin black bezel on an aluminium stand
+      var b = w * 0.014, sh = (w - 2 * b) * 9 / 16, dh = sh + 2 * b;
+      var nw = w * 0.15, nh = w * 0.17, fw = w * 0.34, fh = w * 0.014;
+      return { w: w, h: dh + nh + fh, draw: function (c, img) {
+        var dark = S.chrome === 'dark';
+        var g = c.createLinearGradient(0, dh, 0, dh + nh);
+        g.addColorStop(0, dark ? '#1c1c1e' : '#b9b8b3'); g.addColorStop(1, dark ? '#3a3a3d' : '#e4e3df');
+        c.fillStyle = g; c.fillRect((w - nw) / 2, dh - b, nw, nh + b);
+        rr(c, (w - fw) / 2, dh + nh, fw, fh, fh / 2); c.fillStyle = dark ? '#2a2a2d' : '#cfceca'; c.fill();
+        rr(c, 0, 0, w, dh, w * 0.012); c.fillStyle = '#0b0b0c'; c.fill();
+        shot(c, img, b, b, w - 2 * b, sh, w * 0.004);
+      } };
     }
   };
 
   // layouts: a list of devices in group units (x, y, width); the group is scaled to fit later
+  var PH = 2.12;  // phone screen height / width
   function layoutItems() {
     var L = S.layout;
+    if (L === 'trio') {  // three phones, the middle one raised
+      var k = S.frame === 'rim' ? 'rim' : 'phone', d = PH * 0.1;
+      return [0, 1, 2].map(function (i) { return { k: k, a: PH, phone: true, x: i * 1.1, y: i === 1 ? 0 : d, w: 1, img: i }; });
+    }
+    if (S.frame === 'rim') {
+      if (L === 'pair') return [{ k: 'rim', a: 0.77, x: 0, y: 0, w: 1, img: 0, grow: true }, { k: 'rim', a: PH, phone: true, x: 1.035, y: 0, w: 0.77 / PH, img: 1 }];
+      if (L === 'spread') return [0, 1, 2].map(function (i) { return { k: 'rim', a: 0.625, x: i * 1.08, y: i === 1 ? 0 : 0.07, w: 1, img: i, grow: true }; });
+      if (L === 'phone') return [{ k: 'rim', a: PH, phone: true, x: 0, y: 0, w: 1, img: 0 }];
+      return [{ k: 'rim', a: L === 'tall' ? 1.25 : L === 'tablet' ? 0.75 : 0.625, x: 0, y: 0, w: 1, img: 0, grow: true }];
+    }
+    if (L === 'tall') return [{ k: 'browser', a: 1.25, x: 0, y: 0, w: 1, img: 0, grow: true }];
     if (L === 'pair') return [{ k: 'browser', x: 0, y: 0, w: 1, img: 0 }, { k: 'phone', x: 0.8, y: 0.2, w: 0.24, img: 1, anchorBottom: 0.07 }];
     if (L === 'spread') return [{ k: 'browser', x: 0, y: 0.07, w: 1, img: 0 }, { k: 'browser', x: 1.08, y: 0, w: 1, img: 1 }, { k: 'browser', x: 2.16, y: 0.07, w: 1, img: 2 }];
     return [{ k: L, x: 0, y: 0, w: 1, img: 0 }];
@@ -371,6 +425,10 @@
     c.clearRect(0, 0, W, H);
     if (S.bg === 'none') return;
     if (S.bg === 'solid') { c.fillStyle = S.c1; c.fillRect(0, 0, W, H); return; }
+    if (S.bg === 'glow') {  // a soft light from above the top centre
+      var gl = c.createRadialGradient(W / 2, H * 0.12, 0, W / 2, H * 0.12, Math.max(W, H) * 0.75);
+      gl.addColorStop(0, S.c2); gl.addColorStop(1, S.c1); c.fillStyle = gl; c.fillRect(0, 0, W, H); return;
+    }
     if (S.bg === 'gradient' || (S.bg === 'image' && !bgImg) || (S.bg === 'blur' && !shots.some(Boolean))) {
       var g = c.createLinearGradient(0, 0, W, H); g.addColorStop(0, S.c1); g.addColorStop(1, S.c2);
       c.fillStyle = g; c.fillRect(0, 0, W, H); return;
@@ -383,7 +441,7 @@
       var t2 = document.createElement('canvas'); t2.width = 128; t2.height = Math.round(128 * H / W);
       var c2 = t2.getContext('2d'); c2.imageSmoothingQuality = 'high'; c2.drawImage(t, 0, 0, t2.width, t2.height);
       c.imageSmoothingQuality = 'high'; c.drawImage(t2, 0, 0, W, H);
-      c.fillStyle = 'rgba(255,255,255,.18)'; c.fillRect(0, 0, W, H);
+      c.fillStyle = 'rgba(0,0,0,.14)'; c.fillRect(0, 0, W, H);
       return;
     }
     cover(c, src, W, H);
@@ -410,14 +468,36 @@
   function size() { return S.size === 'custom' ? [clampN(S.cw), clampN(S.ch)] : SIZES[S.size]; }
   function clampN(n) { return Math.max(200, Math.min(6000, Math.round(+n) || 1000)); }
 
+  // title top left, tag top right; returns the room they take so the screens sit below them
+  function labels(c, W, H) {
+    if (!S.title && !S.tag) return 0;
+    var light = S.bg === 'blur' || S.bg === 'image' || S.bg === 'none' || lum(S.bg === 'glow' ? S.c2 : S.c1) < 0.5;
+    var x = Math.max(W * 0.035, Math.min(W, H) * S.pad / 100), y = H * 0.065;
+    c.save(); c.fillStyle = light ? '#ffffff' : '#17181a'; c.textBaseline = 'middle';
+    if (S.title) { c.font = '500 ' + Math.round(H * 0.046) + 'px Inter, sans-serif'; c.textAlign = 'left'; c.fillText(S.title, x, y); }
+    if (S.tag) {
+      c.font = '500 ' + Math.round(H * 0.017) + 'px ui-monospace, "SF Mono", Menlo, monospace'; c.textAlign = 'right';
+      if ('letterSpacing' in c) c.letterSpacing = Math.round(H * 0.0025) + 'px';
+      c.fillText(S.tag.toUpperCase(), W - x, y);
+    }
+    c.restore();
+    return H * 0.1;
+  }
+  function lum(hex) {
+    var n = parseInt(hex.slice(1), 16);
+    return (0.299 * (n >> 16) + 0.587 * (n >> 8 & 255) + 0.114 * (n & 255)) / 255;
+  }
+
+  var U = 1;  // a thousandth of the canvas width, for rims and labels
   function render(canvas, scale) {
     var sz = size(), W = Math.round(sz[0] * scale), H = Math.round(sz[1] * scale);
-    canvas.width = W; canvas.height = H;
+    canvas.width = W; canvas.height = H; U = W / 1000;
     var c = canvas.getContext('2d');
     background(c, W, H);
+    var top = labels(c, W, H);
 
     var items = layoutItems().map(function (it) {
-      var d = DEV[it.k](it.w * 1000);  // measure in a 1000-unit space
+      var d = DEV[it.k](it.w * 1000, it);  // measure in a 1000-unit space
       var y = it.anchorBottom != null ? null : it.y * 1000;
       return { it: it, w: d.w, h: d.h, x: it.x * 1000, y: y };
     });
@@ -426,14 +506,20 @@
     var tiltK = Math.cos(Math.abs(S.tilt) * Math.PI / 180);
     var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
     items.forEach(function (o) { minX = Math.min(minX, o.x); minY = Math.min(minY, o.y); maxX = Math.max(maxX, o.x + o.w * tiltK); maxY = Math.max(maxY, o.y + o.h); });
-    var pad = Math.min(W, H) * S.pad / 100;
-    var f = Math.min((W - 2 * pad) / (maxX - minX), (H - 2 * pad) / (maxY - minY));
-    var ox = (W - (maxX - minX) * f) / 2 - minX * f, oy = (H - (maxY - minY) * f) / 2 - minY * f;
+    var pad = Math.min(W, H) * S.pad / 100, y0 = pad + top;
+    // Run off the bottom: the box reaches past the canvas edge and the group hangs from the top
+    var boxH = S.bleed ? H - y0 + H * S.bleed / 100 : H - y0 - pad;
+    var f = Math.min((W - 2 * pad) / (maxX - minX), boxH / (maxY - minY));
+    var ox = (W - (maxX - minX) * f) / 2 - minX * f;
+    var oy = (S.bleed ? y0 : y0 + (boxH - (maxY - minY) * f) / 2) - minY * f;
 
     items.forEach(function (o) {
-      var dw = Math.max(1, Math.round(o.it.w * 1000 * f)), d = DEV[o.it.k](dw);
+      var dw = Math.max(1, Math.round(o.it.w * 1000 * f)), it = o.it;
+      // windows that run off the bottom grow to past the edge, so the page keeps going instead of ending in a corner
+      if (S.bleed && it.grow) it = Object.assign({}, it, { a: Math.max(it.a || 0.625, (H + 40 * U - (oy + o.y * f)) / dw) });
+      var d = DEV[it.k](dw, it);
       var t = document.createElement('canvas'); t.width = dw; t.height = Math.ceil(d.h);
-      d.draw(t.getContext('2d'), imgFor(o.it.img));
+      d.draw(t.getContext('2d'), imgFor(it.img));
       var img = S.tilt ? tilted(t, S.tilt) : t;
       var x = ox + o.x * f, y = oy + o.y * f, sh = S.shadow / 100;
       if (sh > 0) {  // two shadows: a soft ambient one and a tighter contact one
@@ -462,13 +548,16 @@
     document.getElementById('size-note').textContent = sz[0] + ' × ' + sz[1] + (S.size === 'og' ? ' · link previews' : '');
     document.getElementById('cw').value = S.cw; document.getElementById('ch').value = S.ch;
     document.getElementById('url').value = S.url;
+    document.getElementById('title').value = S.title; document.getElementById('tag').value = S.tag;
+    document.getElementById('url').hidden = S.frame === 'rim';
+    document.getElementById('frame-note').textContent = S.frame === 'rim' ? 'Rim: Light is a pale rim, Dark a glass one.' : '';
     document.getElementById('c1').value = S.c1; document.getElementById('c2').value = S.c2;
-    document.getElementById('bg-colors').hidden = !(S.bg === 'solid' || S.bg === 'gradient');
-    document.getElementById('c2-wrap').hidden = S.bg !== 'gradient';
+    document.getElementById('bg-colors').hidden = !(S.bg === 'solid' || S.bg === 'gradient' || S.bg === 'glow');
+    document.getElementById('c2-wrap').hidden = S.bg === 'solid';
     document.getElementById('bg-pick').hidden = S.bg !== 'image';
     var e = sz[0] * S.scale, h = sz[1] * S.scale;
     document.getElementById('export-note').textContent = 'Exports ' + e + ' × ' + h + ' PNG.';
-    var notes = { pair: 'Pair: screen 1 is the desktop, screen 2 the phone.', spread: 'Spread: one screen per window; empty slots repeat screen 1.' };
+    var notes = { pair: 'Pair: screen 1 is the desktop, screen 2 the phone.', spread: 'Spread: one screen per window; empty slots repeat screen 1.', trio: 'Trio: one screen per phone; empty slots repeat screen 1.' };
     document.getElementById('slot-note').textContent = notes[S.layout] || 'Uses screen 1. Tall full-page captures work: use Scroll to pick the part.';
     save(); draw();
   }
@@ -504,19 +593,22 @@
     });
   });
 
-  ['url', 'c1', 'c2', 'cw', 'ch'].forEach(function (id) {
+  ['url', 'title', 'tag', 'c1', 'c2', 'cw', 'ch'].forEach(function (id) {
     document.getElementById(id).addEventListener('input', function (e) { S[id] = e.target.value; save(); draw(); });
   });
   document.getElementById('cw').addEventListener('change', sync);
   document.getElementById('ch').addEventListener('change', sync);
 
-  var tplEl = document.getElementById('templates');
-  TEMPLATES.forEach(function (t) {
-    var b = document.createElement('button'); b.className = 'chip';
-    b.innerHTML = '<i style="background:linear-gradient(135deg,' + t[1].c1 + ',' + t[1].c2 + ')"></i>' + t[0];
-    b.addEventListener('click', function () { Object.assign(S, t[1]); sync(); });
-    tplEl.appendChild(b);
-  });
+  function chips(el, list) {
+    list.forEach(function (t) {
+      var s = t[1], b = document.createElement('button'); b.className = 'chip';
+      b.innerHTML = '<i style="background:' + (s.bg === 'glow' ? 'radial-gradient(circle at 50% 20%,' + s.c2 + ',' + s.c1 + ')' : 'linear-gradient(135deg,' + s.c1 + ',' + s.c2 + ')') + '"></i>' + t[0];
+      b.addEventListener('click', function () { Object.assign(S, BASE, s); sync(); });
+      el.appendChild(b);
+    });
+  }
+  chips(document.getElementById('house'), HOUSE);
+  chips(document.getElementById('templates'), TEMPLATES);
 
   var swEl = document.getElementById('swatches');
   SWATCHES.forEach(function (p) {
