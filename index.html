@@ -167,7 +167,7 @@
     <div class="group">
       <div class="label">House style</div>
       <div class="chips" id="house"></div>
-      <div class="note">How the Lødd and Ostra thumbnails are made: a thin rim instead of a browser bar, on a dark glow or a blur.</div>
+      <div class="note">A thin rim instead of a browser bar, on a dark glow or a blur. Windows can run off the bottom.</div>
       <div class="label" style="margin-top:var(--s-4)">Marketplace</div>
       <div class="chips" id="templates"></div>
       <div class="note">Modelled on top-selling Framer Marketplace thumbnails. All 4:3; export at 2x for 3200 × 2400.</div>
@@ -262,12 +262,12 @@
     ['Three pages', { size: '4:3', layout: 'spread', chrome: 'light', bg: 'solid', c1: '#efede8', c2: '#efede8', pad: 8, radius: 12, shadow: 35, tilt: 0 }],
     ['OG card', { size: 'og', layout: 'browser', chrome: 'light', bg: 'gradient', c1: '#c9b8ff', c2: '#ffd3e6', pad: 8, radius: 16, shadow: 45, tilt: 0 }]
   ];
-  // Sanna's own thumbnails (Lødd, Ostra): rimmed screens, no browser bar, windows running off the bottom
+  // house style, from Sanna's own template thumbnails: rimmed screens, no browser bar, windows running off the bottom
   var HOUSE = [
-    ['Lødd tall', { size: '4:3', frame: 'rim', layout: 'tall', chrome: 'light', bg: 'glow', c1: '#141312', c2: '#2e2b28', pad: 9, bleed: 6, radius: 14, shadow: 0 }],
-    ['Lødd pair', { size: '4:3', frame: 'rim', layout: 'pair', chrome: 'light', bg: 'glow', c1: '#141312', c2: '#2e2b28', pad: 7, bleed: 6, radius: 14, shadow: 0 }],
-    ['Phone trio', { size: '4:3', frame: 'rim', layout: 'trio', chrome: 'light', bg: 'glow', c1: '#141312', c2: '#2e2b28', pad: 10, bleed: 0, radius: 14, shadow: 0 }],
-    ['Ostra pair', { size: '4:3', frame: 'rim', layout: 'pair', chrome: 'dark', bg: 'blur', c1: '#3a2c2a', c2: '#7a5a55', pad: 4, bleed: 0, radius: 14, shadow: 20, title: 'Template', tag: 'Framer template' }]
+    ['Tall on glow', { size: '4:3', frame: 'rim', layout: 'tall', chrome: 'light', bg: 'glow', c1: '#141312', c2: '#2e2b28', pad: 9, bleed: 6, radius: 14, shadow: 0 }],
+    ['Pair on glow', { size: '4:3', frame: 'rim', layout: 'pair', chrome: 'light', bg: 'glow', c1: '#141312', c2: '#2e2b28', pad: 7, bleed: 6, radius: 14, shadow: 0 }],
+    ['Trio on glow', { size: '4:3', frame: 'rim', layout: 'trio', chrome: 'light', bg: 'glow', c1: '#141312', c2: '#2e2b28', pad: 10, bleed: 0, radius: 14, shadow: 0 }],
+    ['Pair on blur', { size: '4:3', frame: 'rim', layout: 'pair', chrome: 'dark', bg: 'blur', c1: '#3a2c2a', c2: '#7a5a55', pad: 4, bleed: 0, radius: 14, shadow: 20, title: 'Template', tag: 'Framer template' }]
   ];
   // what a template doesn't set goes back to this, so templates don't inherit each other's labels or bleed
   var BASE = { frame: 'device', bleed: 0, title: '', tag: '', tilt: 0, scroll: 0 };
@@ -287,20 +287,23 @@
   // A device is drawn at (0,0) with width w. `screen` is where the screenshot goes.
   var DEV = {
     browser: function (w, it) {
-      var bar = Math.round(w * 0.034), sh = Math.round(w * (it.a || 0.625));
+      var bar = Math.round(w * 0.026), sh = Math.round(w * (it.a || 0.625));
       return { w: w, h: bar + sh, screen: [0, bar, w, sh], draw: function (c, img) {
         var r = S.radius * w / 1920 * 1.6, dark = S.chrome === 'dark';
         rr(c, 0, 0, w, bar + sh, r); c.save(); c.clip();
-        c.fillStyle = dark ? '#202022' : '#f3f3f1'; c.fillRect(0, 0, w, bar);
-        var d = bar * 0.24, y = bar / 2;
-        ['#ff5f57', '#febc2e', '#28c840'].forEach(function (col, i) { c.fillStyle = col; c.beginPath(); c.arc(bar * 0.62 + i * d * 3.2, y, d, 0, 7); c.fill(); });
-        var pw = w * 0.34, ph = bar * 0.56;
-        rr(c, (w - pw) / 2, y - ph / 2, pw, ph, ph / 2); c.fillStyle = dark ? '#303033' : '#e6e6e3'; c.fill();
+        // a quiet bar: neutral dots, a small centred address, a hairline above the page
+        c.fillStyle = dark ? '#1c1c1e' : '#f7f7f6'; c.fillRect(0, 0, w, bar);
+        var d = bar * 0.15, y = bar / 2;
+        c.fillStyle = dark ? '#3e3e41' : '#dcdbd7';
+        for (var i = 0; i < 3; i++) { c.beginPath(); c.arc(bar * 0.75 + i * d * 3.4, y, d, 0, 7); c.fill(); }
+        var pw = w * 0.24, ph = bar * 0.58;
+        rr(c, (w - pw) / 2, y - ph / 2, pw, ph, ph / 2); c.fillStyle = dark ? '#2a2a2d' : '#ecebe8'; c.fill();
         if (S.url) {
-          c.fillStyle = dark ? '#a8a8a8' : '#6f6e68'; c.font = '500 ' + (bar * 0.3) + 'px Inter, sans-serif';
-          c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(S.url, w / 2, y + 1, pw * 0.9);
+          c.fillStyle = dark ? '#8f8f8f' : '#85847e'; c.font = '500 ' + (bar * 0.29) + 'px Inter, sans-serif';
+          c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(S.url, w / 2, y + 1, pw * 0.88);
         }
         shot(c, img, 0, bar, w, sh, 0);
+        c.fillStyle = dark ? 'rgba(255,255,255,.07)' : 'rgba(23,24,26,.07)'; c.fillRect(0, bar - Math.max(1, w * 0.0006), w, Math.max(1, w * 0.0006));
         c.restore();
       } };
     },
@@ -367,22 +370,24 @@
 
   // layouts: a list of devices in group units (x, y, width); the group is scaled to fit later
   var PH = 2.12;  // phone screen height / width
+  // a window takes its screenshot's shape; tall full-page captures get 16:10 and Scroll picks the part
+  function winA(i) { var im = imgFor(i), r = im ? im.naturalHeight / im.naturalWidth : 0.625; return r < 0.9 ? r : 0.625; }
   function layoutItems() {
-    var L = S.layout;
+    var L = S.layout, A = winA(0);
     if (L === 'trio') {  // three phones, the middle one raised
       var k = S.frame === 'rim' ? 'rim' : 'phone', d = PH * 0.1;
       return [0, 1, 2].map(function (i) { return { k: k, a: PH, phone: true, x: i * 1.1, y: i === 1 ? 0 : d, w: 1, img: i }; });
     }
     if (S.frame === 'rim') {
-      if (L === 'pair') return [{ k: 'rim', a: 0.77, x: 0, y: 0, w: 1, img: 0, grow: true }, { k: 'rim', a: PH, phone: true, x: 1.035, y: 0, w: 0.77 / PH, img: 1 }];
-      if (L === 'spread') return [0, 1, 2].map(function (i) { return { k: 'rim', a: 0.625, x: i * 1.08, y: i === 1 ? 0 : 0.07, w: 1, img: i, grow: true }; });
+      if (L === 'pair') return [{ k: 'rim', a: A, x: 0, y: 0, w: 1, img: 0, grow: true }, { k: 'rim', a: PH, phone: true, x: 1.035, y: 0, w: A / PH, img: 1 }];
+      if (L === 'spread') return [0, 1, 2].map(function (i) { return { k: 'rim', a: winA(i), x: i * 1.08, y: i === 1 ? 0 : 0.07, w: 1, img: i, grow: true }; });
       if (L === 'phone') return [{ k: 'rim', a: PH, phone: true, x: 0, y: 0, w: 1, img: 0 }];
-      return [{ k: 'rim', a: L === 'tall' ? 1.25 : L === 'tablet' ? 0.75 : 0.625, x: 0, y: 0, w: 1, img: 0, grow: true }];
+      return [{ k: 'rim', a: L === 'tall' ? 1.25 : L === 'tablet' ? 0.75 : A, x: 0, y: 0, w: 1, img: 0, grow: true }];
     }
     if (L === 'tall') return [{ k: 'browser', a: 1.25, x: 0, y: 0, w: 1, img: 0, grow: true }];
-    if (L === 'pair') return [{ k: 'browser', x: 0, y: 0, w: 1, img: 0 }, { k: 'phone', x: 0.8, y: 0.2, w: 0.24, img: 1, anchorBottom: 0.07 }];
-    if (L === 'spread') return [{ k: 'browser', x: 0, y: 0.07, w: 1, img: 0 }, { k: 'browser', x: 1.08, y: 0, w: 1, img: 1 }, { k: 'browser', x: 2.16, y: 0.07, w: 1, img: 2 }];
-    return [{ k: L, x: 0, y: 0, w: 1, img: 0 }];
+    if (L === 'pair') return [{ k: 'browser', a: A, x: 0, y: 0, w: 1, img: 0 }, { k: 'phone', x: 0.8, y: 0.2, w: 0.24, img: 1, anchorBottom: 0.07 }];
+    if (L === 'spread') return [0, 1, 2].map(function (i) { return { k: 'browser', a: winA(i), x: i * 1.08, y: i === 1 ? 0 : 0.07, w: 1, img: i }; });
+    return [{ k: L, a: A, x: 0, y: 0, w: 1, img: 0 }];
   }
 
   function imgFor(i) { return shots[i] || shots[0] || shots.find(Boolean) || null; }
