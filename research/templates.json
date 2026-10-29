@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Marketplace — Gradient Window",
+    "why": "The most common winning thumbnail (~40%): light browser window floating on a soft pastel gradient, filling most of the width. Modelled on Consulta and Canvasfolio. 4:3 is the Marketplace thumbnail ratio.",
+    "settings": { "size": "4:3", "layout": "browser", "chrome": "light", "bg": "gradient", "c1": "#C9B8FF", "c2": "#FFD3E6", "pad": 9, "radius": 16, "shadow": 45, "tilt": 0, "scroll": 0, "url": "yourtemplate.framer.website" }
+  },
+  {
+    "name": "Marketplace — Blurred Hero",
+    "why": "Window over a blurred version of the site's own hero, so background and site read as one brand (Kora, Consulting, Firma, Amber). Works for photo-led and dark sites.",
+    "settings": { "size": "4:3", "layout": "browser", "chrome": "dark", "bg": "blur", "c1": "#1A1A1F", "c2": "#3A3A44", "pad": 8, "radius": 14, "shadow": 70, "tilt": 0, "scroll": 0, "url": "yourtemplate.framer.website" }
+  },
+  {
+    "name": "Marketplace — Near Bleed",
+    "why": "Closest the tool gets to the bare full-bleed hero (~24%): the site fills almost the whole card so a giant wordmark stays readable at 279 px (Neiden, Arpeggio, Rushes). Best for big-type heroes.",
+    "settings": { "size": "4:3", "layout": "browser", "chrome": "dark", "bg": "solid", "c1": "#0E0E10", "c2": "#0E0E10", "pad": 3, "radius": 10, "shadow": 0, "tilt": 0, "scroll": 0, "url": "yourtemplate.framer.website" }
+  },
+  {
+    "name": "Marketplace — Studio Grey",
+    "why": "Neutral grey studio backdrop used by most device shots (Lateral, Asher Vale, Perspectiva, All Natural). Laptop stands in for the monitor-on-stand look until that layout exists.",
+    "settings": { "size": "4:3", "layout": "laptop", "chrome": "light", "bg": "gradient", "c1": "#EDEDEB", "c2": "#C9C9C6", "pad": 10, "radius": 12, "shadow": 40, "tilt": 0, "scroll": 0, "url": "yourtemplate.framer.website" }
+  },
+  {
+    "name": "Marketplace — Dark 3D Tilt",
+    "why": "A tilted window on a near-black, warm-tinted background (CreatorCut, Sanjaya, Spartan's). Depth stands out in a grid of flat cards. Keep the tilt under about 20° so the hero stays readable.",
+    "settings": { "size": "4:3", "layout": "browser", "chrome": "dark", "bg": "gradient", "c1": "#0D0D10", "c2": "#3A1414", "pad": 10, "radius": 14, "shadow": 80, "tilt": -18, "scroll": 0, "url": "yourtemplate.framer.website" }
+  },
+  {
+    "name": "Marketplace — Brand Colour Pop",
+    "why": "A solid, saturated brand colour behind a light window (ProLab, Platform, GrowthLabb). Light and saturated backgrounds pop hardest against the Marketplace's near-black page. Set c1 to the site's accent.",
+    "settings": { "size": "4:3", "layout": "browser", "chrome": "light", "bg": "solid", "c1": "#FF5A1F", "c2": "#FF5A1F", "pad": 8, "radius": 12, "shadow": 30, "tilt": 0, "scroll": 0, "url": "yourtemplate.framer.website" }
+  },
+  {
+    "name": "Marketplace — Soft Neutral Float",
+    "why": "Quiet, premium look for minimal or editorial sites: light window, off-white→grey gradient, deeper shadow (Maelle, Overtake, Asher Vale).",
+    "settings": { "size": "4:3", "layout": "browser", "chrome": "light", "bg": "gradient", "c1": "#F4F4F2", "c2": "#D6D6D2", "pad": 10, "radius": 12, "shadow": 55, "tilt": 0, "scroll": 0, "url": "yourtemplate.framer.website" }
+  },
+  {
+    "name": "Gallery — Desktop + Phone",
+    "why": "Almost no top thumbnails use phones, but listing pages carry 3 more 4:3 gallery images. A desktop + phone pair is the natural 'it's responsive' shot for slot 2.",
+    "settings": { "size": "4:3", "layout": "pair", "chrome": "light", "bg": "gradient", "c1": "#DCE6FF", "c2": "#F4E9FF", "pad": 10, "radius": 14, "shadow": 45, "tilt": 0, "scroll": 0, "url": "yourtemplate.framer.website" }
+  },
+  {
+    "name": "Gallery — Three Pages",
+    "why": "Shows range like the collage thumbnails (Nudge, Framewell, Platform), but flat and readable. Use for gallery slots 3–4 with inner pages (About, Work, Pricing).",
+    "settings": { "size": "4:3", "layout": "spread", "chrome": "light", "bg": "solid", "c1": "#EFEDE8", "c2": "#EFEDE8", "pad": 8, "radius": 12, "shadow": 35, "tilt": 0, "scroll": 0, "url": "yourtemplate.framer.website" }
+  },
+  {
+    "name": "Social — OG Card",
+    "why": "The same gradient-window look at 1200×630 for the template's own social share image and launch posts, so the listing and social posts match.",
+    "settings": { "size": "og", "layout": "browser", "chrome": "light", "bg": "gradient", "c1": "#C9B8FF", "c2": "#FFD3E6", "pad": 8, "radius": 16, "shadow": 45, "tilt": 0, "scroll": 0, "url": "yourtemplate.framer.website" }
+  }
+]
